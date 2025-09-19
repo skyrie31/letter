@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/css?family=Caveat");
+@import url("https://fonts.googleapis.com/css?family=Ledger");
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+button,
+input {
+  font-family: "Ledger";
+}
+
+body {
+
+ background-image: url('purple\ background.jfif'); /* Replace with your image path */
+  background-size: cover;      /* Make it cover the entire screen */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Optional: keeps the image fixed while scrolling */
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Make the video cover the entire screen and stay behind content */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover; /* ensures it fills the screen without distortion */
+  z-index: -100;     /* send it behind everything else */
+}
+
+
+#info {
+  position: absolute;
+  font-family: Caveat;
+  color: white; /* text color */
+  padding-top: 15px;
+  font-size: 5vh;
+  opacity: 0.9; /* increase if needed */
+  text-shadow: 2px 2px 4px #000000; /* x-offset, y-offset, blur, color */
+}
+
+
+.shaker {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+canvas {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: -10;
+}
+
+.dialog {
+  z-index: 10;
+  top: 30vh;
+  transform: translateY(30vh);
+  margin: 0 auto;
+  width: 30vw;
+  background-color: #d8b8ff; /* light purple dialog */
+  text-align: center;
+  min-width: 200px;
+  box-shadow: 10px 10px #6c3483; /* darker purple shadow */
+}
+
+.dialog:after {
+  content: "";
+  display: block;
+  padding-bottom: 0;
+}
+
+.shadow {
+  width: 100%;
+  height: 0;
+  padding-left: 50%;
+  padding-top: 30%;
+  overflow: hidden;
+}
+
+    .shadow div {
+    width: 0;
+    height: 0;
+    margin-left: -1000px;
+    margin-top: -600px;
+    border-left: 1000px solid transparent;
+    border-right: 1000px solid transparent;
+    border-top: 600px solid #9b59b6 !important; /* purple explosion */
+    /* box-shadow: 10px 10px #7d3c98; optional darker shadow */
+    }
+
+#stamp-envelope {
+  text-align: center;
+  border-radius: 100%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  width: 0;
+  height: 0;
+  padding-left: 13%;
+  padding-top: 14%;
+  margin-bottom: 20%;
+  margin-top: -12.5%;
+  background-color: #8e44ad; /* dark purple */
+  border: 2px solid #8e44ad;
+  color: #d8b8ff; /* light purple text */
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  box-shadow: 2px 3px #6c3483; /* darker shadow */
+}
+
+@media screen and (max-height: 400px) {
+  .dialog {
+    top: 20vh;
+    transform: translateY(20vh);
+    width: 20vw;
+  }
+
+  .stamp.hvr-buzz p {
+    font-size: 2vw;
+    margin-left: -2.2vw;
+    margin-top: -2.8vw;
+  }
+}
+
+.stamp-wrapper {
+  text-align: right;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+#stamp-footer {
+  display: inline-block;
+  padding: 16px 25px;
+  color: #d8b8ff; /* light purple */
+  font-size: 35px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 4px solid #8e44ad; /* dark purple */
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  user-select: none;
+  background-color: #8e44ad; /* dark purple */
+}
+
+.stamp:hover {
+  animation-name: hvr-buzz;
+}
+
+.stamp:active {
+}
+
+@-webkit-keyframes hvr-buzz {
+  50% {
+    -webkit-transform: translateX(3px) rotate(2deg);
+    transform: translateX(3px) rotate(2deg);
+  }
+  100% {
+    -webkit-transform: translateX(-3px) rotate(-2deg);
+    transform: translateX(-3px) rotate(-2deg);
+  }
+}
+@keyframes hvr-buzz {
+  50% {
+    -webkit-transform: translateX(3px) rotate(2deg);
+    transform: translateX(3px) rotate(2deg);
+  }
+  100% {
+    -webkit-transform: translateX(-3px) rotate(-2deg);
+    transform: translateX(-3px) rotate(-2deg);
+  }
+}
+.hvr-buzz {
+  display: inline-block;
+  vertical-align: middle;
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.hvr-buzz:hover,
+.hvr-buzz:active {
+  animation-name: hvr-buzz;
+  animation-duration: 0.4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.message {
+  display: none;
+  position: absolute;
+  width: 400px;
+  max-height: 65vh;
+  margin-left: -200px;
+  left: 50vw;
+  top: 47vh;
+  margin-top: -30vh;
+}
+
+.part-one {
+  position: relative;
+  background-color: #d8b8ff; /* light purple letter */
+  max-height: 65vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.message-header {
+  width: inherit;
+  height: 5vh;
+  background-color: purple; /* purple header */
+}
+
+.message-text {
+  padding: 40px 30px;
+  padding-bottom: 0px;
+  letter-spacing: 1px;
+  line-height: 25px;
+  font-family: "Caveat", cursive;
+  color: #8e44ad; /* dark purple text */
+}
+
+.message-footer {
+  bottom: 0;
+  background-color: #8e44ad; /* dark purple footer */
+  width: 400px;
+  height: 5vh;
+}
+
+#stamp-footer {
+  right: 30px;
+  bottom: 60px;
+  padding: 0;
+  width: 60px;
+  height: 50px;
+  margin-top: -34px;
+}
+
+#ui {
+  position: absolute;
+  left: calc(50vw - 40px);
+  top: calc(50vh - 40px);
+}
+
+.dg.ac {
+  z-index: 1000 !important;
+}
+
+/* Scrollbar edit for chrome */
+#part-one-message::-webkit-scrollbar-track {
+  background-color: #6c3483; /* dark purple track */
+}
+
+#part-one-message::-webkit-scrollbar {
+  width: 10px;
+}
+
+#part-one-message::-webkit-scrollbar-thumb {
+  background-color: #9b59b6; /* purple thumb */
+}
